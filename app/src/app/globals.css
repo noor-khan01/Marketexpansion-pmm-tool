@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+/* ─── Design tokens ────────────────────────────────────────────────────────
+   Source of truth: DESIGN.md. Every colour, radius and shadow a component
+   uses must come from one of these custom properties — never hardcode a
+   colour. Light values live on :root; dark values are redefined under BOTH
+   the OS-level prefers-color-scheme query (guarded so an explicit
+   data-theme="light" can still opt out) and an explicit data-theme="dark"
+   attribute for a manual theme toggle.
+*/
+
+:root {
+  --paper: #f1f4f8; /* page ground — cool paper, not white */
+  --surface: #ffffff; /* cards, rails, tiles */
+  --sunk: #e7ecf3; /* skeletons, table headers, inset wells */
+  --ink: #0d1626;
+  --ink-muted: #56637e;
+  --ink-faint: #8593ad;
+  --rule: #dce3ed;
+  --rule-strong: #c1cbdb;
+
+  --home: #56637e;
+  --home-soft: #e7ebf2;
+  --accent: #1b3a8c;
+  --accent-ink: #142c6b;
+  --accent-soft: #e3e9f8;
+
+  --go: #0b6e4f;
+  --go-soft: #def1e8;
+  --cond: #915600;
+  --cond-soft: #faedd8;
+  --stop: #a81f16;
+  --stop-soft: #fae4e2;
+  --hold: #56637e;
+  --hold-soft: #e7ebf2;
+
+  --shadow-sit: 0 1px 2px rgb(13 22 38 / 0.05), 0 1px 3px rgb(13 22 38 / 0.04);
+  --shadow-lift: 0 8px 24px -8px rgb(13 22 38 / 0.16);
+
+  --radius-sm: 3px;
+  --radius-md: 4px;
+
+  /* Fonts are wired to CSS vars by next/font in layout.tsx; real fallback
+     stacks below so text is never invisible before the fonts load. */
+  --font-sans: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-instrument-serif), "Iowan Old Style", Georgia, serif;
+  --font-mono: var(--font-ibm-plex-mono), "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0a1019;
+    --surface: #111926;
+    --sunk: #0d1420;
+    --ink: #e9eef7;
+    --ink-muted: #9aa8c0;
+    --ink-faint: #6b7b96;
+    --rule: #212d41;
+    --rule-strong: #33415a;
+
+    --home: #9aa8c0;
+    --home-soft: #1c2434;
+    --accent: #86a2f2;
+    --accent-ink: #afc3f8;
+    --accent-soft: #19274a;
+
+    --go: #4fbf8b;
+    --go-soft: #0f2e1f;
+    --cond: #dfa342;
+    --cond-soft: #31240f;
+    --stop: #f0897c;
+    --stop-soft: #391814;
+    --hold: #9aa8c0;
+    --hold-soft: #1c2434;
+
+    --shadow-sit: 0 1px 2px rgb(0 0 0 / 0.5);
+    --shadow-lift: 0 8px 24px -8px rgb(0 0 0 / 0.6);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0a1019;
+  --surface: #111926;
+  --sunk: #0d1420;
+  --ink: #e9eef7;
+  --ink-muted: #9aa8c0;
+  --ink-faint: #6b7b96;
+  --rule: #212d41;
+  --rule-strong: #33415a;
+
+  --home: #9aa8c0;
+  --home-soft: #1c2434;
+  --accent: #86a2f2;
+  --accent-ink: #afc3f8;
+  --accent-soft: #19274a;
+
+  --go: #4fbf8b;
+  --go-soft: #0f2e1f;
+  --cond: #dfa342;
+  --cond-soft: #31240f;
+  --stop: #f0897c;
+  --stop-soft: #391814;
+  --hold: #9aa8c0;
+  --hold-soft: #1c2434;
+
+  --shadow-sit: 0 1px 2px rgb(0 0 0 / 0.5);
+  --shadow-lift: 0 8px 24px -8px rgb(0 0 0 / 0.6);
+}
+
+/* ─── Wire tokens into Tailwind v4 utilities ───────────────────────────────
+   `@theme inline` re-exposes the custom properties above as Tailwind
+   design-system values (bg-paper, text-ink, border-rule, shadow-sit, ...)
+   without duplicating the actual colour values.
+*/
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunk: var(--sunk);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+
+  --color-home: var(--home);
+  --color-home-soft: var(--home-soft);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-go: var(--go);
+  --color-go-soft: var(--go-soft);
+  --color-cond: var(--cond);
+  --color-cond-soft: var(--cond-soft);
+  --color-stop: var(--stop);
+  --color-stop-soft: var(--stop-soft);
+  --color-hold: var(--hold);
+  --color-hold-soft: var(--hold-soft);
+
+  --shadow-sit: var(--shadow-sit);
+  --shadow-lift: var(--shadow-lift);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+}
+
+/* ─── Base ────────────────────────────────────────────────────────────── */
+
+html,
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Numbers are always tabular in this product — mono figures must not jitter. */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Visible focus ring on every interactive element, both themes. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Motion is felt, not seen, when the user has asked for less of it. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Skeleton shimmer (ModuleCard loading state, DESIGN.md "Motion") ──── */
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background-image: linear-gradient(100deg, var(--sunk) 40%, var(--rule) 50%, var(--sunk) 60%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s linear infinite;
+}
+
+/* Left-rail "loading" state dot pulse (DESIGN.md "Left rail"). */
+@keyframes rail-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.rail-dot-pulse {
+  animation: rail-dot-pulse 1.3s ease-in-out infinite;
+}

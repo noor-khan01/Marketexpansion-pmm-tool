@@ -1,0 +1,201 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Market Entry Copilot design system (PRD Section 12).
+ * Modern professional B2B SaaS: very light background, one indigo accent,
+ * semantic colours reserved for status only.
+ * All colours are oklch tokens. Never hardcode colours in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-foreground: var(--primary-soft-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-danger-soft: var(--danger-soft);
+  --color-neutral: var(--neutral);
+  --color-neutral-foreground: var(--neutral-foreground);
+  --color-neutral-soft: var(--neutral-soft);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --shadow-card: var(--shadow-card);
+  --shadow-lift: var(--shadow-lift);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.985 0.004 265);
+  --foreground: oklch(0.21 0.03 265);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.03 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.03 265);
+
+  /* Single accent: deep indigo */
+  --primary: oklch(0.45 0.18 274);
+  --primary-foreground: oklch(0.99 0.005 274);
+  --primary-soft: oklch(0.95 0.025 274);
+  --primary-soft-foreground: oklch(0.36 0.16 274);
+
+  --secondary: oklch(0.955 0.008 265);
+  --secondary-foreground: oklch(0.28 0.035 265);
+  --muted: oklch(0.96 0.006 265);
+  --muted-foreground: oklch(0.44 0.025 265);
+  --accent: oklch(0.95 0.025 274);
+  --accent-foreground: oklch(0.36 0.16 274);
+
+  /* Status only */
+  --success: oklch(0.52 0.13 152);
+  --success-foreground: oklch(0.99 0.005 152);
+  --success-soft: oklch(0.945 0.05 152);
+  --warning: oklch(0.62 0.15 74);
+  --warning-foreground: oklch(0.99 0.005 74);
+  --warning-soft: oklch(0.955 0.06 84);
+  --danger: oklch(0.52 0.19 27);
+  --danger-foreground: oklch(0.99 0.005 27);
+  --danger-soft: oklch(0.955 0.04 27);
+  --neutral: oklch(0.47 0.015 265);
+  --neutral-foreground: oklch(0.99 0.003 265);
+  --neutral-soft: oklch(0.945 0.006 265);
+
+  --destructive: oklch(0.52 0.19 27);
+  --destructive-foreground: oklch(0.99 0.005 27);
+
+  --border: oklch(0.915 0.008 265);
+  --border-strong: oklch(0.86 0.012 265);
+  --input: oklch(0.9 0.01 265);
+  --ring: oklch(0.45 0.18 274);
+
+  --chart-1: oklch(0.45 0.18 274);
+  --chart-2: oklch(0.6 0.12 200);
+  --chart-3: oklch(0.52 0.13 152);
+  --chart-4: oklch(0.62 0.15 74);
+  --chart-5: oklch(0.52 0.19 27);
+
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.21 0.03 265);
+  --sidebar-primary: oklch(0.45 0.18 274);
+  --sidebar-primary-foreground: oklch(0.99 0.005 274);
+  --sidebar-accent: oklch(0.95 0.025 274);
+  --sidebar-accent-foreground: oklch(0.36 0.16 274);
+  --sidebar-border: oklch(0.915 0.008 265);
+  --sidebar-ring: oklch(0.45 0.18 274);
+
+  --shadow-card: 0 1px 2px 0 oklch(0.21 0.03 265 / 0.04), 0 1px 3px 0 oklch(0.21 0.03 265 / 0.06);
+  --shadow-lift: 0 4px 12px -2px oklch(0.21 0.03 265 / 0.1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-size: 15.5px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+}
+
+/* Presentation mode (FR-80): bump base size ~20% */
+.presentation-mode {
+  font-size: 120%;
+}
+
+@utility page-shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 88rem;
+  padding-inline: 1rem;
+  padding-block: 1.5rem;
+}
+
+@utility panel {
+  background-color: var(--color-card);
+  color: var(--color-card-foreground);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
+@utility pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 999px;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+@utility eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
